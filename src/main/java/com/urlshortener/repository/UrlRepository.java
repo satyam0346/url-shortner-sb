@@ -3,10 +3,11 @@ package com.urlshortener.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import com.urlshortener.model.Url;
 import com.urlshortener.util.DBConnection;
 
 public class UrlRepository {
-    public static void main(String[] args) {
+    public void saveUrl(Url url){
         try {
             Connection con = DBConnection.getConnection();
 
@@ -14,7 +15,9 @@ public class UrlRepository {
 
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString();
+            /* url.getOriginalUrl(). ----> it is a method that gives us the original url from the url object */
+            ps.setString(1, url.getOriginalUrl());
+            ps.setString(2, url.getShortCode());
 
             int i = ps.executeUpdate();
 
@@ -22,5 +25,8 @@ public class UrlRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+        
+    
 }
