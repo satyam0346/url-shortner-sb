@@ -1,0 +1,16 @@
+# Railway deployment configuration
+# Docs: https://docs.railway.app/reference/config-as-code
+
+[build]
+# Use the existing Dockerfile
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Health check — Railway pings this to confirm app is up
+healthcheckPath = "/login"
+healthcheckTimeout = 120
+
+# Restart policy
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
