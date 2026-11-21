@@ -39,10 +39,7 @@ jobs:
 
       - name: Build & run tests
         env:
-          DB_URL: jdbc:postgresql://localhost:5432/url_shortener_test
-          DB_USERNAME: postgres
-          DB_PASSWORD: test_password
-          DDL_AUTO: create-drop
+          SPRING_PROFILES_ACTIVE: test
         run: mvn -ntp -B verify
 
       - name: Upload build artifact
