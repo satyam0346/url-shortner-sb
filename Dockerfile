@@ -7,9 +7,8 @@ COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
 COPY src src
 
-# Download deps (cached layer), then package skipping tests
-RUN --mount=type=cache,target=/root/.m2 \
-    chmod +x mvnw && ./mvnw -ntp -B package -DskipTests
+# Download deps and package (skipping tests)
+RUN chmod +x mvnw && ./mvnw -ntp -B package -DskipTests
 
 # ── Stage 2: Runtime ─────────────────────────────────────────────────────────
 FROM eclipse-temurin:21-jre-alpine
